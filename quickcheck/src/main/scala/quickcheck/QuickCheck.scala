@@ -20,9 +20,9 @@ abstract class QuickCheckHeap extends Properties("Heap") with IntHeap {
   }
 
   lazy val genHeap: Gen[H] = for {
-    k <- arbitrary[H]
-    m <- oneOf(empty, genHeap)
-  } yield m
+    k <- arbitrary[Int]
+    h <- oneOf(empty, genHeap)
+  } yield insert(k, h)
 
   implicit lazy val arbHeap: Arbitrary[H] = Arbitrary(genHeap)
 
